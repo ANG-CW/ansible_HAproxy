@@ -1,0 +1,15 @@
+http {
+    upstream app1 {
+        vm1 10.0.2.9
+        vm2 10.0.2.15
+        vm3 10.0.2.11
+    }
+
+    server {
+       listen 80;
+
+       location / {
+           proxy_pass http://myapp1;
+       }
+    }
+}
