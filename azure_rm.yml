@@ -1,0 +1,5 @@
+plugin: azure_rm
+subscription_id: "{{lookup('env', 'AZURE_SUBSCRIPTION_ID') }}"
+
+resources_groups:
+  hotdog_rg

@@ -1,0 +1,24 @@
+---
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+  become: yes
+
+- name: copy file
+  copy:
+    src: nginx.conf.j2
+    dest: /ect/nginx/nginx/nginx.conf.j2
+
+- name: configure nginx as lb
+  template:
+    src: nginx.conf.j2
+    dest: /ect/nginx/nginx.conf.j2
+  become: yes
+
+- name: ensure nginx is running
+  service:
+    name: nginx
+    state: started
+    enable: yes
+  become: yes

@@ -1,0 +1,16 @@
+http {
+    upstream backend {
+    vm1 10.0.2.9
+    vm2 10.0.2.11
+    vm3 10.0.2.15
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            root /var/www/html;
+            index index.html;
+        }
+    }    
+ }   
