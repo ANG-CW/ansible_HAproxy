@@ -1,7 +1,7 @@
 [web]
-vm3 ansible_host=10.0.2.15
-vm2 ansible_host=10.0.2.11
-vm1 ansible_host=10.0.2.9
+vm4 ansible_host=10.0.2.15
+vm1 ansible_host=10.0.2.11
+vm3 ansible_host=10.0.2.9
 
 [lb]
-nginx_lb ansible_host=10.0.2.10
+vm2 ansible_host=10.0.2.10

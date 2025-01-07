@@ -1,0 +1,54 @@
+---
+- name: configure nginx as lb
+  hosts: lb
+  become: true
+
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: ensure file exsistes
+      file:
+        path: /ect/nginx/
+        state: directory
+        mode: '0755'
+
+    - name: configure nginx as lb
+      template:
+        src: nginx.conf.j2
+        dest: /ect/nginx/nginx.conf.j2
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: resart nginx
+      service:
+        name: nginx
+        state: restarted
+
+- name: Depoloy Websiteon backend
+  hosts: web
+  tasks:
+    - name: install ngninx
+      apt:
+        name: nginx
+        state: present
+
+    - name: ensure file exsistes
+      file:
+        path: ect/nginx/html
+        state: directory
+        mode: '0644'
+
+    - name: Deploy HTML files
+      template:
+        src: roles/files/index.html
+        dest: ect/nginx/html/index.html
+
+    - name: Start Webserver
+      service:
+        name: nginx
+        state: started
+
